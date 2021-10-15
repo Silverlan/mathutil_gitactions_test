@@ -27,6 +27,9 @@ jobs:
         run: |
           mkdir third_party_libs
           cd third_party_libs
+          
+          echo CD: %cd%
+          
           curl -LJO https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
           7z x glm-0.9.9.8.zip
           cd ../
@@ -38,7 +41,9 @@ jobs:
           git clone https://github.com/Silverlan/sharedutils.git
           cd sharedutils
           git checkout master
-          echo MATHUTIL INCLUDE DIR
+          
+          echo INCLUDE DIR: ${{ github.workspace }}\third_party_libs\glm
+          
           cmake -S . -B . -DDEPENDENCY_GLM_INCLUDE=${{ github.workspace }}\third_party_libs\glm -DSHAREDUTILS_STATIC=ON -DDEPENDENCY_MATHUTIL_INCLUDE=${{ github.workspace }}\include\ -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} -G "${{ matrix.config.generators }}"
           cmake --build ./ --config ${{ matrix.config.build_type }}
           cd ../
