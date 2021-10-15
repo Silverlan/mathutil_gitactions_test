@@ -33,6 +33,8 @@ jobs:
           
       - name: Download submodule - sharedutils
         run: |
+          echo "CWD"
+          echo ${{env.working-directory}}
           mkdir external_libs
           cd external_libs
           git clone https://github.com/Silverlan/sharedutils.git
