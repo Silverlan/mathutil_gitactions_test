@@ -1,0 +1,48 @@
+name: 'Get Submodule'
+description: 'Downloads and builds a git submodule'
+inputs:
+  repo:
+    description: 'Repository Url'
+    required: true
+  repo_name:
+    description: 'Name of the repository'
+    required: true
+  repo_branch:
+    description: 'Branch to clone'
+    required: true
+    default: 'master'
+  dir:
+    description: 'Clone directory'
+    required: true
+    default: 'external_libs'
+  cmake_definitions:
+    description: 'CMake definitions'
+    required: true
+    default: 'external_libs'
+  should_build:
+    description: 'Should build?'
+    required: true
+    default: true
+  build_type:
+    description: 'Build Type'
+    required: true
+  build_generator:
+    description: 'Build Generator'
+    required: true
+runs:
+  using: "composite"
+  steps: 
+    - name: Clone
+      shell: bash
+      run: |
+        mkdir ${{ inputs.dir }}
+        cd ${{ inputs.dir }}
+        git clone ${{ inputs.repo }}
+        cd ${{ inputs.repo_name }}
+        git checkout ${{ inputs.repo_branch }}
+    - if: ${{ inputs.should_build }}
+      - name: Build
+        run: |
+          cmake -S . -B . ${{ inputs.cmake_definitions }} -DCMAKE_BUILD_TYPE=${{ inputs.build_type }} -G "${{ inputs.build_generator }}"
+          cmake --build ./ --config ${{ matrix.config.build_type }}
+          cd ../
