@@ -40,11 +40,11 @@ jobs:
           cd sharedutils
           git checkout master
           
-      - name: Build submodule - sharedutils
-        run: |
-          cmake -S . -B . -DDEPENDENCY_GLM_INCLUDE=${{ github.workspace }}\third_party_libs\glm -DSHAREDUTILS_STATIC=ON -DDEPENDENCY_MATHUTIL_INCLUDE=${{ github.workspace }}\include\ -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} -G "${{ matrix.config.generators }}"
-          cmake --build ./ --config ${{ matrix.config.build_type }}
-          cd ../
+      #- name: Build submodule - sharedutils
+      #  run: |
+      #    cmake -S . -B . -DDEPENDENCY_GLM_INCLUDE=${{ github.workspace }}\third_party_libs\glm -DSHAREDUTILS_STATIC=ON -DDEPENDENCY_MATHUTIL_INCLUDE=${{ github.workspace }}\include\ -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} -G "${{ matrix.config.generators }}"
+      #    cmake --build ./ --config ${{ matrix.config.build_type }}
+      #    cd ../
 
       - name: CMake
         shell: bash
@@ -55,7 +55,9 @@ jobs:
             -S . \
             -B . \
             -DDEPENDENCY_GLM_INCLUDE=${{ github.workspace }}\third_party_libs\glm \
+            -DDEPENDENCY_SHAREDUTILS_INCLUDE=${{ github.workspace }}\external_libs\sharedutils\include
             -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} \
+            -DMATHUTIL_STATIC=ON \
             -G "${{ matrix.config.generators }}" \
             -DCMAKE_INSTALL_PREFIX:PATH=instdir
       - name: Build
