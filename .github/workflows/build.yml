@@ -71,7 +71,7 @@ jobs:
       #    cd ../
       
       - name: CMake Build
-        uses: Silverlan/mathutil_gitactions_test/build_generic@main
+        uses: Silverlan/mathutil_gitactions_test/build_cmake@main
         with:
           build_type: ${{ matrix.config.build_type }}
           build_generator: ${{ matrix.config.generators }}
