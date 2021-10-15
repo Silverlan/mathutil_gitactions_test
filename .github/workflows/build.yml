@@ -58,6 +58,7 @@ jobs:
             -DDEPENDENCY_GLM_INCLUDE=./third_party_libs/glm \
             -DDEPENDENCY_SHAREDUTILS_INCLUDE=./external_libs/sharedutils/include \
             -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} \
+            -DMATHUTIL_ENABLE_MESH_FUNCTIONS=OFF \
             -DMATHUTIL_STATIC=ON \
             -G "${{ matrix.config.generators }}" \
             -DCMAKE_INSTALL_PREFIX:PATH=instdir
