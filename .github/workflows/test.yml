@@ -1,0 +1,11 @@
+runs:
+  using: "composite"
+  steps: 
+    - name: Download submodule - GLM 0.9.9.8
+      run: |
+        mkdir third_party_libs
+        cd third_party_libs
+
+        curl -LJO https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
+        7z x glm-0.9.9.8.zip
+        cd ../
