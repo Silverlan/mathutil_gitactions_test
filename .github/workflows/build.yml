@@ -26,8 +26,15 @@ jobs:
       
       
       
-      - name: Test Subaction A
-        uses: Silverlan/mathutil_gitactions_test/testaction_a@main
+      #- name: Get Sharedutils
+      #  uses: Silverlan/mathutil_gitactions_test/get_submodule@main
+      
+      
+      
+      
+      
+      #- name: Test Subaction A
+      #  uses: Silverlan/mathutil_gitactions_test/testaction_a@main
         
     
         
@@ -35,20 +42,23 @@ jobs:
         
       - name: Test Subaction
         uses: Silverlan/mathutil_gitactions_test/testaction@main
-        
-        
-        
-        
+        with:
+          repo: 'https://github.com/Silverlan/sharedutils.git'
+          repo_name: 'sharedutils'
+          should_build: false
 
 
 
-      - name: Download submodule - sharedutils
-        run: |
-          mkdir external_libs
-          cd external_libs
-          git clone https://github.com/Silverlan/sharedutils.git
-          cd sharedutils
-          git checkout master
+
+
+
+      #- name: Download submodule - sharedutils
+      #  run: |
+      #    mkdir external_libs
+      #    cd external_libs
+      #    git clone https://github.com/Silverlan/sharedutils.git
+      #    cd sharedutils
+      #    git checkout master
           
       #- name: Build submodule - sharedutils
       #  run: |
