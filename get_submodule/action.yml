@@ -40,11 +40,11 @@ runs:
         git clone ${{ inputs.repo }}
         cd ${{ inputs.repo_name }}
         git checkout ${{ inputs.repo_branch }}
-    - name: Build
-      shell: bash
-      run: |
-        if [[ "${{inputs.should_build}}" == "true" ]]; then
-          cmake -S . -B . ${{ inputs.cmake_definitions }} -DCMAKE_BUILD_TYPE=${{ inputs.build_type }} -G "${{ inputs.build_generator }}"
-          cmake --build ./ --config ${{ matrix.config.build_type }}
-          cd ../
-        fi
+    #- name: Build
+    #  shell: bash
+    #  run: |
+    #    if [[ "${{inputs.should_build}}" == "true" ]]; then
+    #      cmake -S . -B . ${{ inputs.cmake_definitions }} -DCMAKE_BUILD_TYPE=${{ inputs.build_type }} -G "${{ inputs.build_generator }}"
+    #      cmake --build ./ --config ${{ matrix.config.build_type }}
+    #      cd ../
+    #    fi
