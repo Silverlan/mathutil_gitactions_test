@@ -37,7 +37,7 @@ jobs:
       #  uses: Silverlan/mathutil_gitactions_test/testaction_a@main
         
       - name: Download submodule - GLM 0.9.9.8
-        uses: Silverlan/mathutil_gitactions_test/curl_download@main
+        uses: Silverlan/common_actions/curl_download@main
         with:
           download_url: 'https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip'
           file_name: 'glm-0.9.9.8.zip'
@@ -45,7 +45,7 @@ jobs:
         
         
       - name: Test Subaction
-        uses: Silverlan/mathutil_gitactions_test/get_submodule@main
+        uses: Silverlan/common_actions/get_submodule@main
         with:
           repo: 'https://github.com/Silverlan/sharedutils.git'
           repo_name: 'sharedutils'
@@ -71,7 +71,7 @@ jobs:
       #    cd ../
       
       - name: CMake Build
-        uses: Silverlan/mathutil_gitactions_test/build_cmake@main
+        uses: Silverlan/common_actions/build_cmake@main
         with:
           build_type: ${{ matrix.config.build_type }}
           build_generator: ${{ matrix.config.generators }}
