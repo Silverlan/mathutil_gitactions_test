@@ -23,12 +23,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Download submodule: GLM 0.9.9.8
+      - name: Download submodule - GLM 0.9.9.8
         run: |
           curl -LJO https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
           7z x glm-0.9.9.8.zip
           
-      - name: Download submodule: mathutil
+      - name: Download submodule - mathutil
         run: |
           cd c:\projects\mathutil
           mkdir build
@@ -37,7 +37,7 @@ jobs:
           cd googletest
           git checkout v1.10.x
           
-      - name: Download submodule: sharedutils
+      - name: Download submodule - sharedutils
         run: |
           cd c:\projects\
           git clone https://github.com/Silverlan/sharedutils.git
