@@ -1,0 +1,21 @@
+name: 'Generic CMake build'
+description: 'Builds the specified project'
+inputs:
+  cmake_definitions:
+    description: 'CMake definitions'
+    required: true
+    default: ''
+  build_type:
+    description: 'Build Type'
+    required: true
+  build_generator:
+    description: 'Build Generator'
+    required: true
+runs:
+  using: "composite"
+  steps: 
+    - name: Build
+      shell: bash
+      run: |
+        cmake -S . -B . ${{ inputs.cmake_definitions }} -DCMAKE_BUILD_TYPE=${{ inputs.build_type }} -G "${{ inputs.build_generator }}"
+        cmake --build ./ --config ${{ matrix.config.build_type }}
