@@ -25,28 +25,24 @@ jobs:
 
       - name: Download submodule - GLM 0.9.9.8
         run: |
+          mkdir third_party_libs
+          cd third_party_libs
           curl -LJO https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
           7z x glm-0.9.9.8.zip
-          
-      - name: Download submodule - mathutil
-        run: |
-          cd c:\projects\mathutil
-          mkdir build
-          cd build
-          git clone https://github.com/google/googletest.git googletest
-          cd googletest
-          git checkout v1.10.x
+          cd ../
           
       - name: Download submodule - sharedutils
         run: |
-          cd c:\projects\
+          mkdir external_libs
+          cd external_libs
           git clone https://github.com/Silverlan/sharedutils.git
           cd sharedutils
           git checkout master
           mkdir build
           cd build
           cmake .. -G %generator% -DDEPENDENCY_GLM_INCLUDE=c:\projects\glm -DSHAREDUTILS_STATIC=ON  -DDEPENDENCY_MATHUTIL_INCLUDE=C:\projects\mathutil\include\
-          msbuild c:\projects\sharedutils\build\sharedutils.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+          msbuild ./sharedutils.sln
+          cd ../../
 
       - name: CMake
         shell: bash
