@@ -1,2 +1,2 @@
-# mathutil_gitactions_test
-Ignore this repository
+# mathutil
+Math utility library used in the pragma game engine.
