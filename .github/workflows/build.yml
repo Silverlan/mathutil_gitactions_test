@@ -1,0 +1,65 @@
+name: Build
+on: [push]
+jobs:
+  build-windows:
+    name: Build-Windows-x64
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - {
+            name: "Windows x64 MSVC",
+            os: windows-latest,
+            artifact: "Windows-MSVC.tar.xz",
+            build_type: "RelWithDebInfo",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            cc: "cl",
+            cxx: "cl",
+            archiver: "7z a",
+            generators: "Visual Studio 16 2019"
+          }
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Download submodule: GLM 0.9.9.8
+        run: |
+          curl -LJO https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
+          7z x glm-0.9.9.8.zip
+          
+      - name: Download submodule: mathutil
+        run: |
+          cd c:\projects\mathutil
+          mkdir build
+          cd build
+          git clone https://github.com/google/googletest.git googletest
+          cd googletest
+          git checkout v1.10.x
+          
+      - name: Download submodule: sharedutils
+        run: |
+          cd c:\projects\
+          git clone https://github.com/Silverlan/sharedutils.git
+          cd sharedutils
+          git checkout master
+          mkdir build
+          cd build
+          cmake .. -G %generator% -DDEPENDENCY_GLM_INCLUDE=c:\projects\glm -DSHAREDUTILS_STATIC=ON  -DDEPENDENCY_MATHUTIL_INCLUDE=C:\projects\mathutil\include\
+          msbuild c:\projects\sharedutils\build\sharedutils.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
+      - name: CMake
+        shell: bash
+        run: |
+          mkdir build
+          mkdir instdir
+          cmake \
+            -S . \
+            -B . \
+            -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} \
+            -G "${{ matrix.config.generators }}" \
+            -DCMAKE_INSTALL_PREFIX:PATH=instdir
+      - name: Build
+        shell: bash
+        run: cmake --build ./ --config ${{ matrix.config.build_type }}
+        
