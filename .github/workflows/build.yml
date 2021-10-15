@@ -44,7 +44,7 @@ jobs:
         
         
       - name: Test Subaction
-        uses: Silverlan/mathutil_gitactions_test/testaction@master
+        uses: Silverlan/mathutil_gitactions_test/testaction@main
         
         
         
