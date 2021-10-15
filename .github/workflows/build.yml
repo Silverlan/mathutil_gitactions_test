@@ -26,20 +26,10 @@ jobs:
       
       
       
-      - name: Get composite run steps repository
-        uses: actions/checkout@v2
-        with:
-          repository: Silverlan/mathutil_gitactions_test
-          # Select revision
-          ref: v5
-          # Personal access token to check out private repository
-          # token: ${{ secrets.PAT_TOKEN }}
-          # Indicate where to check action out to
-          path: .github/myaction
-
-      - name: Run action from private repo
-        uses: ./.github/myaction
+      - name: Test Subaction A
+        uses: Silverlan/mathutil_gitactions_test/testaction_a@main
         
+    
         
         
         
