@@ -1,0 +1,25 @@
+name: 'Curl Download'
+description: 'Download archive file via curl and extract'
+inputs:
+  download_url:
+    description: 'Download Url'
+    required: true
+  file_name:
+    description: 'File Name'
+    required: true
+  download_dir:
+    description: 'Download Directory'
+    required: true
+    default: 'third_party_libs'
+runs:
+  using: "composite"
+  steps: 
+    - name: Curl Download
+      shell: bash
+      run: |
+        mkdir ${{ inputs.download_dir }}
+        cd ${{ inputs.download_dir }}
+
+        curl -LJO ${{ inputs.download_url }}
+        7z x ${{ inputs.file_name }}
+        cd ../
