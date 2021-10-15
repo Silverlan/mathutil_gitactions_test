@@ -55,7 +55,7 @@ jobs:
           cmake \
             -S . \
             -B . \
-            -DDEPENDENCY_GLM_INCLUDE=${{ github.workspace }}\third_party_libs\glm \
+            -DDEPENDENCY_GLM_INCLUDE=./third_party_libs/glm \
             -DDEPENDENCY_SHAREDUTILS_INCLUDE=${{ github.workspace }}\external_libs\sharedutils\include \
             -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} \
             -DMATHUTIL_STATIC=ON \
