@@ -22,20 +22,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      
-      
-      
+
       #- name: Get Sharedutils
       #  uses: Silverlan/mathutil_gitactions_test/get_submodule@main
       
       
-      
-      
-      
-      #- name: Test Subaction A
-      #  uses: Silverlan/mathutil_gitactions_test/testaction_a@main
-        
       - name: Download submodule - GLM 0.9.9.8
         uses: Silverlan/common_actions/curl_download@main
         with:
@@ -52,24 +43,6 @@ jobs:
           should_build: false
 
 
-
-
-
-
-      #- name: Download submodule - sharedutils
-      #  run: |
-      #    mkdir external_libs
-      #    cd external_libs
-      #    git clone https://github.com/Silverlan/sharedutils.git
-      #    cd sharedutils
-      #    git checkout master
-          
-      #- name: Build submodule - sharedutils
-      #  run: |
-      #    cmake -S . -B . -DDEPENDENCY_GLM_INCLUDE=${{ github.workspace }}\third_party_libs\glm -DSHAREDUTILS_STATIC=ON -DDEPENDENCY_MATHUTIL_INCLUDE=${{ github.workspace }}\include\ -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} -G "${{ matrix.config.generators }}"
-      #    cmake --build ./ --config ${{ matrix.config.build_type }}
-      #    cd ../
-      
       - name: CMake Build
         uses: Silverlan/common_actions/build_cmake@main
         with:
