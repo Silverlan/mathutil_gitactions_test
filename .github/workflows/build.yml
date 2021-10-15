@@ -41,7 +41,7 @@ jobs:
         
         
       - name: Test Subaction
-        uses: Silverlan/mathutil_gitactions_test/testaction@main
+        uses: Silverlan/mathutil_gitactions_test/get_submodule@main
         with:
           repo: 'https://github.com/Silverlan/sharedutils.git'
           repo_name: 'sharedutils'
