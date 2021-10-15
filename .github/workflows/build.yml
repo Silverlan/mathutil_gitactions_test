@@ -39,6 +39,16 @@ jobs:
 
       - name: Run action from private repo
         uses: ./.github/myaction
+        
+        
+        
+        
+      - name: Test Subaction
+        uses: Silverlan/mathutil_gitactions_test/testaction@master
+        
+        
+        
+        
 
 
 
