@@ -31,7 +31,7 @@ jobs:
           curl -LJO https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
           7z x glm-0.9.9.8.zip
           cd ../
-          if exist "${{ github.workspace }}\third_party_libs\glm\glm\exponential.hpp" (echo "EXISTS!")
+          DIR "${{ github.workspace }}\third_party_libs\glm\glm\exponential.hpp"
           
       - name: Download submodule - sharedutils
         run: |
