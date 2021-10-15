@@ -40,7 +40,7 @@ jobs:
           git checkout master
           mkdir build
           cd build
-          cmake .. -G %generator% -DDEPENDENCY_GLM_INCLUDE=c:\projects\glm -DSHAREDUTILS_STATIC=ON  -DDEPENDENCY_MATHUTIL_INCLUDE=C:\projects\mathutil\include\
+          cmake .. -G "${{ matrix.config.generators }}" -DDEPENDENCY_GLM_INCLUDE=c:\projects\glm -DSHAREDUTILS_STATIC=ON  -DDEPENDENCY_MATHUTIL_INCLUDE=C:\projects\mathutil\include\
           msbuild ./sharedutils.sln
           cd ../../
 
