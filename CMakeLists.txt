@@ -5,6 +5,8 @@ project(${PROJ_NAME} CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 
+message("DEPENDENCY_GLM_INCLUDE: ${DEPENDENCY_GLM_INCLUDE}")
+
 set(DEPENDENCY_GLM_INCLUDE "" CACHE PATH "Path to GLM include directory.")
 set(DEPENDENCY_SHAREDUTILS_INCLUDE "" CACHE PATH "Path to sharedutils include directory.")
 set(DEPENDENCY_GEOMETRIC_TOOLS_INCLUDE "" CACHE PATH "Path to geometric tools include directory. Only required if mesh functions are enabled.")
