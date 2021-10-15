@@ -52,24 +52,6 @@ jobs:
           should_build: false
 
 
-
-
-
-
-      #- name: Download submodule - sharedutils
-      #  run: |
-      #    mkdir external_libs
-      #    cd external_libs
-      #    git clone https://github.com/Silverlan/sharedutils.git
-      #    cd sharedutils
-      #    git checkout master
-          
-      #- name: Build submodule - sharedutils
-      #  run: |
-      #    cmake -S . -B . -DDEPENDENCY_GLM_INCLUDE=${{ github.workspace }}\third_party_libs\glm -DSHAREDUTILS_STATIC=ON -DDEPENDENCY_MATHUTIL_INCLUDE=${{ github.workspace }}\include\ -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} -G "${{ matrix.config.generators }}"
-      #    cmake --build ./ --config ${{ matrix.config.build_type }}
-      #    cd ../
-      
       - name: CMake Build
         uses: Silverlan/common_actions/build_cmake@main
         with:
