@@ -31,7 +31,7 @@ jobs:
         with:
           repository: Silverlan/mathutil_gitactions_test
           # Select revision
-          ref: v2
+          ref: v3
           # Personal access token to check out private repository
           # token: ${{ secrets.PAT_TOKEN }}
           # Indicate where to check action out to
